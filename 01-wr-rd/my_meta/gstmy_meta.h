@@ -9,10 +9,19 @@
 G_BEGIN_DECLS
 
 typedef struct _GstMyMeta {
-    GstMeta meta;
-    guint64 frame_id;
-    guint64 timestamp;
-    guint32 version;
+    GstMeta meta;         // Base GstMeta structure, required for all custom metadata
+
+    guint64 frame_id;     // Sequential frame number assigned by the writer
+
+    guint64 pts;          // Presentation Timestamp (PTS) from GStreamer pipeline
+                          // Indicates when this buffer/frame should be presented
+                          // Measured in nanoseconds relative to stream start
+
+    guint64 timestamp;    // System timestamp at moment of metadata creation
+                          // Measured in microseconds from monotonic clock (g_get_monotonic_time)
+                          // Useful for measuring pipeline latency
+
+    guint32 version;      // Version of this metadata structure, can be used for backward compatibility
 } GstMyMeta;
 
 GType gst_my_meta_api_get_type(void);

@@ -27,13 +27,24 @@ static GstFlowReturn gst_my_writer_transform_ip(GstBaseTransform *base, GstBuffe
         NULL
     );
 
+    guint64 pts = GST_BUFFER_PTS(buf);         // PTS из буфера
+    guint64 now_us = g_get_monotonic_time();   // текущее системное время в микросекундах
+
     if (meta) {
         meta->frame_id = self->counter;
-        meta->timestamp = GST_BUFFER_PTS(buf);
+        meta->pts = pts;
+        meta->timestamp = now_us;
         meta->version = 1;
     }
 
-    g_print("Writer: frame %" G_GUINT64_FORMAT "\n", self->counter);
+    g_print("Writer: frame=%" G_GUINT64_FORMAT 
+            " meta_pts=%" G_GUINT64_FORMAT 
+            " sys_time=%" G_GUINT64_FORMAT
+            " delta_us=%" G_GUINT64_FORMAT "\n",
+            self->counter,
+            pts,
+            now_us,
+            now_us > pts ? now_us - pts : 0);
 
     return GST_FLOW_OK;
 }

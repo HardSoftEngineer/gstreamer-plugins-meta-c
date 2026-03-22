@@ -3,6 +3,7 @@
 static gboolean gst_my_meta_init(GstMeta *meta, gpointer params, GstBuffer *buffer) {
     GstMyMeta *m = (GstMyMeta *) meta;
     m->frame_id = 0;
+    m->pts = 0;
     m->timestamp = 0;
     m->version = 1;
     return TRUE;

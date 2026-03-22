@@ -34,10 +34,20 @@ static GstFlowReturn gst_my_reader_transform_ip(GstBaseTransform *base, GstBuffe
         return GST_FLOW_OK;
     }
 
-    g_print("Reader: frame=%" G_GUINT64_FORMAT
-            " ts=%" G_GUINT64_FORMAT "\n",
+    guint64 meta_pts = meta->pts;              // PTS из буфера
+    guint64 meta_timestamp = meta->timestamp;  // timestamp из буфера 
+    guint64 now_us = g_get_monotonic_time();   // текущее системное время в микросекундах
+
+    g_print("Reader: frame=%" G_GUINT64_FORMAT 
+            " meta_pts=%" G_GUINT64_FORMAT 
+            " meta_time=%" G_GUINT64_FORMAT 
+            " sys_time=%" G_GUINT64_FORMAT
+            " delta meta-sys=%" G_GUINT64_FORMAT "\n",
             meta->frame_id,
-            meta->timestamp);
+            meta_pts,
+            meta_timestamp,
+            now_us,
+            now_us > meta_timestamp ? now_us - meta_timestamp : 0);
 
     return GST_FLOW_OK;
 }
