@@ -19,10 +19,20 @@ const GstMetaInfo *gst_my_meta_get_info(void);
 
 GType gst_my_meta_api_get_type(void) {
     static GType type = 0;
-    static const gchar *tags[] = { "my_meta", NULL };
 
     if (g_once_init_enter(&type)) {
+
+        GType existing = g_type_from_name("GstMyMetaAPI");
+
+        if (existing != 0) {
+            g_once_init_leave(&type, existing);
+            return existing;
+        }
+
+        static const gchar *tags[] = { "my_meta", NULL };
+
         GType _type = gst_meta_api_type_register("GstMyMetaAPI", tags);
+
         g_once_init_leave(&type, _type);
     }
 
