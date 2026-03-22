@@ -8,4 +8,6 @@ cd "$SCRIPT_DIR"
 
 export GST_PLUGIN_PATH=$PWD
 
-gst-inspect-1.0 mymetawriter
+# gst-inspect-1.0 mymetawriter
+
+gst-inspect-1.0 mymetareader

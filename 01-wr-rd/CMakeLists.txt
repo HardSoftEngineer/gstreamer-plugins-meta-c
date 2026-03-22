@@ -21,3 +21,18 @@ set_target_properties(gstmymetawriter PROPERTIES
     PREFIX ""
 )
 
+add_library(gstmymetareader SHARED gstmyreader.c)
+
+target_include_directories(gstmymetareader PRIVATE ${GST_INCLUDE_DIRS})
+target_link_libraries(gstmymetareader ${GST_LIBRARIES})
+target_compile_options(gstmymetareader PRIVATE ${GST_CFLAGS_OTHER})
+
+target_compile_definitions(gstmymetareader PRIVATE
+    PACKAGE="mymetareader"
+    PACKAGE_NAME="mymetareader"
+    VERSION="1.0"
+)
+
+set_target_properties(gstmymetareader PROPERTIES 
+    PREFIX ""
+)

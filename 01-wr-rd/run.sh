@@ -8,4 +8,8 @@ cd "$SCRIPT_DIR"
 
 export GST_PLUGIN_PATH=$PWD
 
-gst-launch-1.0 videotestsrc ! mymetawriter ! fakesink
+# # 
+# gst-launch-1.0 videotestsrc ! mymetawriter ! fakesink
+
+# 
+gst-launch-1.0 videotestsrc ! mymetawriter ! mymetareader ! fakesink
