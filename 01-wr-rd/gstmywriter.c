@@ -18,18 +18,39 @@ static GstFlowReturn gst_my_writer_transform_ip(GstBaseTransform *base, GstBuffe
 
     self->counter++;
 
-    g_print("Writer: frame %lu\n", self->counter);
+    g_print("Writer: frame %" G_GUINT64_FORMAT "\n", self->counter);
 
     return GST_FLOW_OK;
 }
 
 static void gst_my_writer_class_init(GstMyWriterClass *klass) {
+    GstElementClass *element_class = GST_ELEMENT_CLASS(klass);
     GstBaseTransformClass *base_transform_class = GST_BASE_TRANSFORM_CLASS(klass);
 
     base_transform_class->transform_ip = gst_my_writer_transform_ip;
 
+    // 
+    GstCaps *caps = gst_caps_new_any();
+
+    GstPadTemplate *sink_templ = gst_pad_template_new(
+        "sink",
+        GST_PAD_SINK,
+        GST_PAD_ALWAYS,
+        caps
+    );
+
+    GstPadTemplate *src_templ = gst_pad_template_new(
+        "src",
+        GST_PAD_SRC,
+        GST_PAD_ALWAYS,
+        caps
+    );
+
+    gst_element_class_add_pad_template(element_class, sink_templ);
+    gst_element_class_add_pad_template(element_class, src_templ);
+
     gst_element_class_set_static_metadata(
-        GST_ELEMENT_CLASS(klass),
+        element_class,
         "My Writer",
         "Filter/Effect/Video",
         "Counts frames and prints",
