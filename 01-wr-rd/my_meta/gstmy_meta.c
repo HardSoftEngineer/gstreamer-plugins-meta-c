@@ -27,6 +27,36 @@ GType gst_my_meta_api_get_type(void) {
     return type;
 }
 
+static gboolean gst_my_meta_transform(
+    GstBuffer *dest_buf,
+    GstMeta *meta,
+    GstBuffer *src_buf,
+    GQuark type,
+    gpointer data)
+{
+    GstMyMeta *src_meta = (GstMyMeta *) meta;
+
+    g_print("gst_my_meta_transform");
+
+    // new meta в dest buffer
+    GstMyMeta *dst_meta = (GstMyMeta *) gst_buffer_add_meta(
+        dest_buf,
+        GST_MY_META_INFO,
+        NULL
+    );
+
+    if (!dst_meta)
+        return FALSE;
+
+    // copy
+    dst_meta->frame_id = src_meta->frame_id;
+    dst_meta->pts = src_meta->pts;
+    dst_meta->timestamp = src_meta->timestamp;
+    dst_meta->version = src_meta->version;
+
+    return TRUE;
+}
+
 const GstMetaInfo *gst_my_meta_get_info(void) {
     static const GstMetaInfo *meta_info = NULL;
 
@@ -37,7 +67,7 @@ const GstMetaInfo *gst_my_meta_get_info(void) {
             sizeof(GstMyMeta),
             gst_my_meta_init,
             NULL,
-            NULL
+            gst_my_meta_transform
         );
         g_once_init_leave((GstMetaInfo **)&meta_info, (GstMetaInfo *)mi);
     }
