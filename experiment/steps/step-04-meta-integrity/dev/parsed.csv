@@ -1,0 +1,8 @@
+pipeline,runs,meta_present_pct,frames_with_meta_total,reader_lines_total,reader_no_meta_total,transform_calls_total,ages_count,ages_avg,ages_p50,ages_p90,ages_p95,ages_min,ages_max
+base_writer_reader,10,100.0,3000,3000,0,0,3000,54.9,43,82,119,13,1466
+identity_dropalloc,10,100.0,3000,3000,0,0,3000,60.38,47,86,114,12,5202
+jpegenc_jpegdec,10,0.0,0,3000,3000,0,0,None,None,None,None,None,None
+with_queues,10,100.0,3000,3000,0,0,3000,290.92,160,529,1059,22,15377
+writer_videoconvert_reader,10,100.0,3000,3000,0,0,3000,49.84,41,72,95,14,1253
+writer_videorate_reader,10,100.0,3000,3000,0,3000,3000,1657.65,1438,2547,3174,63,10873
+writer_videoscale_videoconvert_reader,10,100.0,3000,3000,0,0,3000,51.25,41,74,103,8,1295
