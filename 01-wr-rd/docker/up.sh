@@ -2,14 +2,20 @@
 set -euo pipefail
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-REPO_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
+# Find repo root (git)
+REPO_ROOT="$SCRIPT_DIR"
+while [ "$REPO_ROOT" != "/" ] && [ ! -d "$REPO_ROOT/.git" ]; do
+  REPO_ROOT=$(dirname "$REPO_ROOT")
+done
+if [ ! -d "$REPO_ROOT/.git" ]; then
+  echo "[up.sh] Could not find repo root with .git" >&2
+  exit 1
+fi
 
 IMAGE_NAME="gst-meta-test-img"
 CONTAINER_NAME="gst-meta-test"
 DOCKERFILE="$SCRIPT_DIR/Dockerfile"
 
-# Build image only if missing or if Dockerfile changed? 
-# "только при координальной смене зависимостей среды" - по умолчанию не ребилдим
 if [[ "$(docker images -q $IMAGE_NAME 2> /dev/null)" == "" ]]; then
   echo "[up.sh] Image not found, building..."
   docker build -t $IMAGE_NAME -f "$DOCKERFILE" "$SCRIPT_DIR"
@@ -17,7 +23,6 @@ else
   echo "[up.sh] Image $IMAGE_NAME exists, skipping build (rebuild-if-needed.sh if deps changed)"
 fi
 
-# Create container if missing, else start if stopped
 if [[ "$(docker ps -a -q -f name=^/${CONTAINER_NAME}$ 2> /dev/null)" == "" ]]; then
   echo "[up.sh] Creating long-lived container..."
   docker run -d \
@@ -35,4 +40,4 @@ else
   fi
 fi
 
-echo "[up.sh] Done. Use docker/exec.sh or docker/shell.sh"
+echo "[up.sh] Done. Use docker/exec.sh or docker/shell.sh (run from repo root or anywhere)"

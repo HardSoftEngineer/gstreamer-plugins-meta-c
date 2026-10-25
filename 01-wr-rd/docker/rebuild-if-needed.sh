@@ -2,14 +2,20 @@
 set -euo pipefail
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-REPO_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
+REPO_ROOT="$SCRIPT_DIR"
+while [ "$REPO_ROOT" != "/" ] && [ ! -d "$REPO_ROOT/.git" ]; do
+  REPO_ROOT=$(dirname "$REPO_ROOT")
+done
+if [ ! -d "$REPO_ROOT/.git" ]; then
+  echo "[rebuild-if-needed] Could not find repo root with .git" >&2
+  exit 1
+fi
 
 IMAGE_NAME="gst-meta-test-img"
 CONTAINER_NAME="gst-meta-test"
 DOCKERFILE="$SCRIPT_DIR/Dockerfile"
 
 echo "[rebuild-if-needed] Forcing rebuild due to dependency changes..."
-# Stop/remove container if exists? Keep volumes/mounts same
 if [[ "$(docker ps -a -q -f name=^/${CONTAINER_NAME}$ 2> /dev/null)" != "" ]]; then
   echo "[rebuild-if-needed] Stopping/removing container..."
   docker stop "$CONTAINER_NAME" >/dev/null 2>&1 || true
