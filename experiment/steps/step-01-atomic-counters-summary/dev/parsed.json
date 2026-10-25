@@ -1,0 +1,128 @@
+{
+  "writer_videoconvert_reader": {
+    "runs": 10,
+    "writer_lines_total": 3000,
+    "reader_lines_total": 3000,
+    "reader_no_meta_total": 0,
+    "frames_with_meta_total": 3000,
+    "meta_present_pct": 100.0,
+    "transform_calls_total": 0,
+    "ages_us_stats": {
+      "count": 3000,
+      "min": 8,
+      "avg": 44.32,
+      "p50": 37,
+      "p90": 67,
+      "p95": 84,
+      "max": 870
+    }
+  },
+  "writer_videorate_reader": {
+    "runs": 10,
+    "writer_lines_total": 3000,
+    "reader_lines_total": 3000,
+    "reader_no_meta_total": 0,
+    "frames_with_meta_total": 3000,
+    "meta_present_pct": 100.0,
+    "transform_calls_total": 3000,
+    "ages_us_stats": {
+      "count": 3000,
+      "min": 69,
+      "avg": 1497.88,
+      "p50": 1299,
+      "p90": 2313,
+      "p95": 2710,
+      "max": 14405
+    }
+  },
+  "writer_videoscale_videoconvert_reader": {
+    "runs": 10,
+    "writer_lines_total": 3000,
+    "reader_lines_total": 3000,
+    "reader_no_meta_total": 0,
+    "frames_with_meta_total": 3000,
+    "meta_present_pct": 100.0,
+    "transform_calls_total": 0,
+    "ages_us_stats": {
+      "count": 3000,
+      "min": 12,
+      "avg": 52.58,
+      "p50": 44,
+      "p90": 79,
+      "p95": 104,
+      "max": 1157
+    }
+  },
+  "identity_dropalloc": {
+    "runs": 10,
+    "writer_lines_total": 3000,
+    "reader_lines_total": 3000,
+    "reader_no_meta_total": 0,
+    "frames_with_meta_total": 3000,
+    "meta_present_pct": 100.0,
+    "transform_calls_total": 0,
+    "ages_us_stats": {
+      "count": 3000,
+      "min": 14,
+      "avg": 48.74,
+      "p50": 40,
+      "p90": 68,
+      "p95": 89,
+      "max": 2667
+    }
+  },
+  "base_writer_reader": {
+    "runs": 10,
+    "writer_lines_total": 3000,
+    "reader_lines_total": 3000,
+    "reader_no_meta_total": 0,
+    "frames_with_meta_total": 3000,
+    "meta_present_pct": 100.0,
+    "transform_calls_total": 0,
+    "ages_us_stats": {
+      "count": 3000,
+      "min": 11,
+      "avg": 55.53,
+      "p50": 42,
+      "p90": 75,
+      "p95": 101,
+      "max": 15702
+    }
+  },
+  "with_queues": {
+    "runs": 10,
+    "writer_lines_total": 3000,
+    "reader_lines_total": 3000,
+    "reader_no_meta_total": 0,
+    "frames_with_meta_total": 3000,
+    "meta_present_pct": 100.0,
+    "transform_calls_total": 0,
+    "ages_us_stats": {
+      "count": 3000,
+      "min": 21,
+      "avg": 290.01,
+      "p50": 143,
+      "p90": 510,
+      "p95": 1157,
+      "max": 10210
+    }
+  },
+  "jpegenc_jpegdec": {
+    "runs": 10,
+    "writer_lines_total": 3000,
+    "reader_lines_total": 3000,
+    "reader_no_meta_total": 3000,
+    "frames_with_meta_total": 0,
+    "meta_present_pct": 0.0,
+    "transform_calls_total": 0,
+    "ages_us_stats": {
+      "count": 0,
+      "min": null,
+      "avg": null,
+      "p50": null,
+      "p90": null,
+      "p95": null,
+      "max": null
+    }
+  }
+}

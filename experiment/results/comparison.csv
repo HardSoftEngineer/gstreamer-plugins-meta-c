@@ -1,0 +1,13 @@
+pipeline,baseline_meta_pct,baseline_trans,baseline_age_avg,baseline_age_p50,s01_meta_pct,s01_trans,s01_age_avg,s01_age_p50,s03_meta_pct,s03_trans,s03_age_avg,s03_age_p50,s04_meta_pct,s04_trans,s04_age_avg,s04_age_p50,s05_meta_pct,s05_trans,s05_age_avg,s05_age_p50
+base_writer_reader,100.0,0,53.83,39,100.0,0,55.53,42,0,0,None,None,100.0,0,54.9,43,0,0,None,None
+det_identity_dropalloc,0,0,None,None,0,0,None,None,100.0,0,43.6,34,0,0,None,None,0,0,None,None
+det_ref,0,0,None,None,0,0,None,None,100.0,0,42.1,34,0,0,None,None,0,0,None,None
+det_videoconvert,0,0,None,None,0,0,None,None,100.0,0,35.93,26,0,0,None,None,0,0,None,None
+det_videorate,0,0,None,None,0,0,None,None,100.0,3000,543.43,482,0,0,None,None,0,0,None,None
+det_videoscale_videoconvert,0,0,None,None,0,0,None,None,100.0,0,37.13,29,0,0,None,None,0,0,None,None
+identity_dropalloc,100.0,0,60.74,46,100.0,0,48.74,40,0,0,None,None,100.0,0,60.38,47,0,0,None,None
+jpegenc_jpegdec,0.0,0,None,None,0.0,0,None,None,0,0,None,None,0.0,0,None,None,0,0,None,None
+with_queues,100.0,0,285.64,125,100.0,0,290.01,143,0,0,None,None,100.0,0,290.92,160,0,0,None,None
+writer_videoconvert_reader,100.0,0,53.33,42,100.0,0,44.32,37,0,0,None,None,100.0,0,49.84,41,0,0,None,None
+writer_videorate_reader,100.0,3000,1690.62,1544,100.0,3000,1497.88,1299,0,0,None,None,100.0,3000,1657.65,1438,0,0,None,None
+writer_videoscale_videoconvert_reader,100.0,0,52.3,44,100.0,0,52.58,44,0,0,None,None,100.0,0,51.25,41,0,0,None,None

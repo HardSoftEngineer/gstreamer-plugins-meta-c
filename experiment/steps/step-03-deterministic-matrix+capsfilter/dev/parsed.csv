@@ -1,0 +1,6 @@
+pipeline,runs,meta_present_pct,frames_with_meta_total,reader_lines_total,reader_no_meta_total,transform_calls_total,ages_count,ages_avg,ages_p50,ages_p90,ages_p95,ages_min,ages_max
+det_identity_dropalloc,10,100.0,3000,3000,0,0,3000,43.6,34,68,93,7,1076
+det_ref,10,100.0,3000,3000,0,0,3000,42.1,34,61,77,6,1707
+det_videoconvert,10,100.0,3000,3000,0,0,3000,35.93,26,53,79,7,8315
+det_videorate,10,100.0,3000,3000,0,3000,3000,543.43,482,775,923,60,6869
+det_videoscale_videoconvert,10,100.0,3000,3000,0,0,3000,37.13,29,59,80,6,1409
